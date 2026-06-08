@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 
 from database.db import engine
 from database import models
-
+from fastapi.middleware.cors import CORSMiddleware
 # Routers
 from routes import (
     user_routes,
@@ -47,6 +47,13 @@ app = FastAPI(
     version="1.3"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For development (React)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ROUTER REGISTRATION
 
 # USER MANAGEMENT
